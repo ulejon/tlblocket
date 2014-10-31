@@ -15,7 +15,8 @@ object Adds extends Controller {
       "items" -> adds.items.map { add =>
           Json.obj(
             "id" -> add.id,
-            "title" -> add.title
+            "title" -> add.title,
+            "description" -> add.description
           )
         }
     )

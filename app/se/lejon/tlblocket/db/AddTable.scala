@@ -10,7 +10,9 @@ object AddTable {
 
     def title = column[String]("title")
 
-    def * = (id, title) <>(Add.tupled, Add.unapply)
+    def description = column[String]("description")
+
+    def * = (id, title, description) <>(Add.tupled, Add.unapply)
   }
 
   val Adds = TableQuery[AddTableDefinition]
@@ -18,4 +20,4 @@ object AddTable {
 
 }
 
-case class Add(id: Long, title: String)
+case class Add(id: Long, title: String, description: String)

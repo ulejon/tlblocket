@@ -3,6 +3,12 @@
     <div class="row">
         <div class="col-sm-8">
             <h3>Annonser</h3>
+            <!--<select
+                    ng-model="itemsPerPage"
+                    ng-options="item.itemsPerPage as item.displayValue for item in pageOptions"
+                    ng-change="itemsPerPageChanged(itemsPerPage)">
+            </select>
+            <br/>-->
             <pagination
                     boundary-links="true"
                     total-items="totalItems"
@@ -16,11 +22,12 @@
                     ng-change="pageChanged()">
 
             </pagination>
+
             <div ng-repeat="add in ads.items">
                 <div class="panel panel-default">
                     <div class="panel-heading">{{ add.title }}</div>
                     <div class="panel-body">
-                        {{ add.title }}
+                        <div class="angular-with-newlines">{{ add.description }}</div>
                     </div>
                 </div>
             </div>
