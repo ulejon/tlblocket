@@ -1,40 +1,23 @@
-timeoutApp.controller('startCtrl', function ($scope, $resource) {
-    var Timeout = $resource('/timeout', {}, {});
+tlBlocketApp.controller('startCtrl', ['$scope', 'Add', function($scope, Add) {
 
-    var TestTimeout = $resource('/test', {}, {});
+    $scope.totalItems = 0;
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 10;
 
-    Timeout.get({}, function(timeout) {
-        $scope.timeout = timeout.timeout;
-    });
+    $scope.ads = fetchAdds();
 
-    $scope.updateTimeout = function (timeout) {
-        var newTimeout = new Timeout({timeout: timeout});
-        newTimeout.$save();
+    $scope.pageChanged = function () {
+        $scope.ads = fetchAdds();
     };
 
-    $scope.timeoutTestRes = null;
+    function fetchAdds() {
+        return Add.query({
+            count: $scope.itemsPerPage,
+            page: $scope.currentPage
+        }, updateTotalItems);
+    }
 
-    $scope.testTimeout = function () {
-        $scope.timeoutTestRes = "Testing";
-        TestTimeout.get({}, function (res) {
-            $scope.timeoutTestRes = "Done";
-        });
-    };
-
-    $scope.performingTest = function () {
-        return $scope.timeoutTestRes !== null;
-    };
-
-    $scope.isRequestingData = function () {
-        return $scope.timeoutTestRes == 'Testing';
-    };
-
-    $scope.clearTestResultInfo = function () {
-        $scope.timeoutTestRes = null;
-    };
-
-    $scope.testUrl = function () {
-        var route = jsRoutes.controllers.Application.performTimeoutTest();
-        return route.absoluteURL();
-    };
-});
+    function updateTotalItems(addsObject) {
+        $scope.totalItems = addsObject.totalCount;
+    }
+}]);

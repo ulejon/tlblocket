@@ -1,3 +1,3 @@
-timeoutApp.controller('helloCtrl', function ($scope, $resource) {
+tlBlocketApp.controller('helloCtrl', function ($scope, $resource) {
 
 });

@@ -1,6 +1,6 @@
-var timeoutApp = angular.module('timeoutApp', ['ngResource', 'ngRoute', 'ui.bootstrap']);
+var tlBlocketApp = angular.module('tlBlocketApp', ['ngResource', 'ngRoute', 'ui.bootstrap']);
 
-timeoutApp.config(['$routeProvider',
+tlBlocketApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
             when('/start', {
